@@ -1,6 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 // GitHub API endpoint to fetch file contents
 const apiUrl = 'https://api.github.com/repos/:owner/:repo/contents/:path';
 
@@ -26,11 +29,14 @@ async function fetchFile(owner, repo, path) {
 // Example usage
 const owner = 'Divyessh01';
 const repo = 'code-smell-detection';
-const filePath = 'path_to_your_file_in_repository';
+const filePath = 'Test.java';
 fetchFile(owner, repo, filePath)
     .then(data => {
-        // Process file contents
-        console.log('File Contents:', data.content);
+        // Decode file content from base64
+        const decodedContent = Buffer.from(data.content, 'base64').toString();
+        // Print file contents to the terminal
+        console.log('File Contents:');
+        console.log(decodedContent);
         // You can save, analyze, or perform any other operation on the file contents here
     })
     .catch(error => {
