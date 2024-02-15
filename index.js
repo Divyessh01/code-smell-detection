@@ -26,7 +26,7 @@ async function fetchFile(owner, repo, path) {
 // Example usage
 const owner = 'Divyessh01';
 const repo = 'code-smell-detection';
-const filePath = 'path_to_your_file_in_repository';
+const filePath = 'Test.java';
 fetchFile(owner, repo, filePath)
     .then(data => {
         // Process file contents
